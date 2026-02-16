@@ -1,0 +1,11 @@
+# 1. Set the password
+echo "ubuntu:Firefox" | sudo chpasswd
+
+# 2. Install Shellinabox
+sudo apt update && sudo apt install shellinabox -y
+
+# 3. Start the service
+sudo shellinaboxd -b -t -s /:LOGIN
+
+# 4. Verify it's running
+ps aux | grep shellinabox
