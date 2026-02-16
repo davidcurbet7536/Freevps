@@ -1,0 +1,8 @@
+{
+    "name": "Ubuntu 20.04 VPS with Shellinabox",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [4200],
+    "postStartCommand": "sudo service shellinabox start"
+}
