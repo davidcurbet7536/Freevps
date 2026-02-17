@@ -1,0 +1,41 @@
+// 1. JSON Data defining the user options
+const pinConfig = {
+    "options": [
+        { "id": 1, "label": "4-Digit PIN", "length": 4 },
+        { "id": 2, "label": "6-Digit PIN", "length": 6 },
+        { "id": 3, "label": "8-Digit Secret Key", "length": 8 }
+    ]
+};
+
+// 2. Function to generate the random PIN
+function generatePin(length) {
+    let pin = "";
+    for (let i = 0; i < length; i++) {
+        pin += Math.floor(Math.random() * 10);
+    }
+    return pin;
+}
+
+// 3. User interaction logic
+console.log("Select an option to generate a PIN:");
+pinConfig.options.forEach(opt => console.log(`${opt.id}: ${opt.label}`));
+
+// Simulating a choice (Change '1' to any id above)
+let userChoice = 1; 
+
+const selectedOption = pinConfig.options.find(opt => opt.id === userChoice);
+
+if (selectedOption) {
+    const newPin = generatePin(selectedOption.length);
+    // 4. Output the result as a new JSON object
+    const resultJson = {
+        "status": "success",
+        "generated_pin": newPin,
+        "type": selectedOption.label,
+        "timestamp": new Date().toISOString()
+    };
+    console.log("Generated JSON Script:");
+    console.log(JSON.stringify(resultJson, null, 4));
+} else {
+    console.log("Invalid choice.");
+}
